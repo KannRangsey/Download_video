@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi Downloader</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #loadingSpinner {
+            position:fixed;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: green;
+            display: none;
+        }
+        .success-text {
+            font-size: 1.5rem;
+            color: green;
+            margin-top: 10px;
+            display: none;
+            animation-duration: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Spinner & Success -->
+    <div id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status" style="width: 5rem; height: 5rem;" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="success-icon" id="successIcon">✔️</div>
+        <div class="success-text" id="successText">Download Started!</div>
+    </div>
+
+    <!-- Navbar Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Multi Downloader</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#youtube">YouTube</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Facebook.html">Facebook</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tiktok">TikTok</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#instagram">Instagram</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+
+        <!-- YouTube -->
+        <h2 id="youtube" class="mb-4 text-danger">YouTube Video/Audio Downloader</h2>
+        <form method="POST" onsubmit="return showLoading()">
+            <div class="mb-3">
+                <input type="text" name="youtube_url" class="form-control" placeholder="Enter YouTube URL" required>
+            </div>
+            <label class="form-label">Select format:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="youtube_format" value="mp4" checked>
+                <label class="form-check-label">MP4 (Video)</label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="youtube_format" value="mp3">
+                <label class="form-check-label">MP3 (Audio)</label>
+            </div>
+            <button type="submit" class="btn btn-danger">Download</button>
+        </form>
+
+        <hr class="my-5">
+
+        <!-- Facebook -->
+        <h2 id="facebook" class="mb-4 text-primary">Facebook Video Downloader</h2>
+        <form method="POST" onsubmit="return showLoading()">
+            <div class="mb-3">
+                <input type="text" name="facebook_url" class="form-control" placeholder="Enter Facebook Video URL" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Download</button>
+        </form>
+
+        <hr class="my-5">
+
+        <!-- TikTok -->
+        <h2 id="tiktok" class="mb-4 text-success">TikTok Video Downloader</h2>
+        <form method="POST" onsubmit="return showLoading()">
+            <div class="mb-3">
+                <input type="text" name="tiktok_url" class="form-control" placeholder="Enter TikTok Video URL" required>
+            </div>
+            <button type="submit" class="btn btn-success">Download</button>
+        </form>
+
+        <hr class="my-5">
+
+        <!-- Instagram -->
+        <h2 id="instagram" class="mb-4 text-warning">Instagram Video Downloader</h2>
+        <form method="POST" onsubmit="return showLoading()">
+            <div class="mb-3">
+                <input type="text" name="instagram_url" class="form-control" placeholder="Enter Instagram Video URL" required>
+            </div>
+            <button type="submit" class="btn btn-warning text-white">Download</button>
+        </form>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function showLoading() {
+            // Show spinner
+            document.getElementById("loadingSpinner").style.display = "flex";
+            document.getElementById("spinner").style.display = "block";
+            document.getElementById("successIcon").style.display = "none";
+            document.getElementById("successText").style.display = "none";
+
+            // After 2 seconds, show green check success
+            setTimeout(() => {
+                document.getElementById("spinner").style.display = "none";
+                document.getElementById("successIcon").style.display = "block";
+                document.getElementById("successText").style.display = "block";
+            }, 2000);
+
+            return true; // Allow form to submit
+        }
+    </script>
+
+</body>
+</html>
